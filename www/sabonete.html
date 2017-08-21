@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <script src="js/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/produto.css">
+        <script src="js/firebase.js"></script>
+    <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBiBD3o3vYz_mEGP--MIYEwV3GGcPU_pl8",
+    authDomain: "empsoft-344b5.firebaseapp.com",
+    databaseURL: "https://empsoft-344b5.firebaseio.com",
+    projectId: "empsoft-344b5",
+    storageBucket: "empsoft-344b5.appspot.com",
+    messagingSenderId: "135153446688"
+  };
+  firebase.initializeApp(config);
+</script>
+   
+	<script>
+		
+		var pedido = {};
+
+		function add(){
+			var ref = firebase.database().ref("carrinho");
+			var produto = document.getElementById('txtDescricao').textContent;
+			var quantidade = parseInt(document.getElementById("qtdetxt").value);
+			pedido[produto] = quantidade;
+			ref.update(pedido, function(){
+				alert('Adicionado ao carrinho com sucesso!');
+			});
+		}
+
+		
+		function finaliza(){
+			location.href="carrinho.html"
+		}
+
+		
+
+		$(document).ready(function(){
+		
+		});
+
+		function voltar(){
+			location.href="index.html";
+		}
+	</script>
+
+	</head>
+    <body>
+
+	    <div class="barra">
+	    	<a onclick="voltar()" ><img src="img/back.png" alt="" class="voltar"></a>
+	    </div>	
+	    <div id="corpo" style="display:initial;">
+	    	<div class="descricao" align="center">
+	    		<span id="txtDescricao" class="txtDescricao">SABONETE PROTEX</span>
+	    	
+	    	</div>
+	    	
+	    	<div class="imgProduto">
+	    		<img id="imgSize" class="imgSize" src="img/sabonete.jpg">
+	    	</div>
+	    	<div class="preco">
+				<span id="txtPreco" class="txtPreco">R$ 1.10</span>
+	    	</div>
+	    	<div class="quantidade">
+	    		<input type="number" id="qtdetxt" size="2" maxlength="2"  value="1">
+	    		<span class="txtQuantidade" id="txtQuantidade">QUANTIDADE</span>
+	    	</div>
+	    	
+	    	<div class="addCarrinho">
+	    		<input type="submit" value="Adicionar ao Carrinho" onclick="add()" class="btnAdd">
+	    	</div>
+	    	<div class="comprarAgora">
+	    		<input type="submit" onclick="finaliza()" value="Enviar Pedido" class="btnComprarAgora">
+	    	</div>
+		</div>
+	    					   
+    
+    </body>
+</html>

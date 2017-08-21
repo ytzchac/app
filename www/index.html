@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    
+<script src="js/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBiBD3o3vYz_mEGP--MIYEwV3GGcPU_pl8",
+    authDomain: "empsoft-344b5.firebaseapp.com",
+    databaseURL: "https://empsoft-344b5.firebaseio.com",
+    projectId: "empsoft-344b5",
+    storageBucket: "empsoft-344b5.appspot.com",
+    messagingSenderId: "135153446688"
+  };
+  firebase.initializeApp(config);
+</script>
+
+</head>
+<script>
+
+    
+
+    var cria = new Object();
+    cria.produto = function(id, nome, imagem, preco){
+        
+        var $quad = $('<div/>',{
+            'class' : 'quad',
+            'id' : id,
+            'onclick' : 'direct(this.id)'
+        });
+
+        var $imgProduto = $('<div/>',{
+            'class' : 'imgProduto'
+        });
+
+        var $fotoProduto = $('<img/>',{
+            'id' : 'fotoProduto' + " " +id,
+            'src' : imagem,
+            'class' : 'fotoProduto'
+        });
+
+        var $footerProduto = $('<div/>',{
+            'class' : 'footerProduto'
+        });
+
+        var $descProduto = $('<div/>',{
+            'align' : 'center',
+            'class' : 'descProduto'
+        });
+
+        var $nomeProduto = $('<span/>',{
+            'text' : nome,
+            'id' : 'nomeProduto' +" "+ id
+        });
+
+        var $precoProduto = $('<span/>',{
+            'id' : 'precoProduto'+" "+ id,
+            'class' : 'precoProduto',
+            'text' : 'R$ ' + preco.toFixed(2)
+        });
+
+       
+        $descProduto.append($nomeProduto);
+        $footerProduto.append($descProduto);
+        $footerProduto.append($precoProduto);
+        
+        $imgProduto.append($fotoProduto);
+
+        $quad.append($imgProduto);
+        $quad.append($footerProduto);
+        
+
+        $quad.appendTo('.limite');
+    }
+
+    cria.token = function(usuario, sobrenome, telefone){
+       
+        var token = usuario+sobrenome;
+        var cont = 3;
+        
+        for(i=telefone.length-1; i>cont; i--){
+            token += telefone[i];
+        }
+
+        return token;
+    }
+
+    objProdutos = {
+        "ARROZ TIO JOÃO": {
+            url: "img/arroz.jpg",
+            preco : 3.50,
+            link : "arroz.html"
+        },
+        "FEIJÃO BIJU": {
+            url: "img/feijao.jpg",
+            preco : 5.00,
+            link : "feijao.html"
+        },
+        "MACARRÃO": {
+            url : "img/macarrao.jpeg",
+            preco : 2.60,
+            link : "macarrao.html"
+        },
+        "CUSCUZ FLOCÃO": {
+            url: "img/cuscuz.jpg",
+            preco: 1.00,
+            link : "cuscuz.html"
+        },
+        "SABONETE PROTEX" : {
+            url : "img/sabonete.jpg",
+            preco : 1.10,
+            link : "sabonete.html"
+        }
+
+    };
+
+
+    $(function(){
+          var produtos = Object.keys(objProdutos);
+          for (var i = 0; i < produtos.length; i++) {
+              var produto = produtos[i];
+              var link = objProdutos[produto].link
+              var url = objProdutos[produto].url;
+              var preco = objProdutos[produto].preco;
+              cria.produto(link, produto, url, preco);
+          }
+        
+    }); 
+
+    
+    function direct(id){
+       /* var id = id;
+
+        var idImagem = 'fotoProduto' +" "+id;
+        var srcImagem = document.getElementById(idImagem).src;
+        
+        var idNomeProduto = 'nomeProduto' +" "+ id;
+        var txtNomeProduto = document.getElementById(idNomeProduto).textContent;
+        
+
+        var idPreco = 'precoProduto'+" "+ id;
+        var txtPreco = document.getElementById(idPreco).textContent;
+
+        sessionStorage.setItem('id', id);
+        sessionStorage.setItem('src', srcImagem);
+        sessionStorage.setItem('nome', txtNomeProduto);
+        sessionStorage.setItem('preco', txtPreco);*/
+
+        
+        location.href = id;
+
+    }
+   
+</script>
+<body>
+<div class="barra">
+
+</div>
+
+<div id="aqui" class="limite">
+    
+
+  <!--  <div class="quad">
+        
+        <div class="imgProduto">
+            <img src="img/1.jpg" class="fotoProduto">
+        </div>
+        
+        <div class="footerProduto">
+            <div align="center" class="descProduto">
+                <span id="nomeProduto">CAMISETA MARILYN MOROE ROSA</span>
+            </div>
+            <span class="precoProduto">R$ 50,00</span>
+        </div>
+
+    </div>
+
+-->
+</div>
+</body>
+</html>

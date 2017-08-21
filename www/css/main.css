@@ -1,0 +1,88 @@
+/*
+* @Author: ytzchac
+* @Date:   2017-03-05 00:56:02
+* @Last Modified by:   ytzchac
+* @Last Modified time: 2017-03-05 12:46:35
+*/
+@font-face{
+	font-family: ultra;
+	src: url('../fonts/ultra.ttf');
+}
+@font-face{
+	font-family: light;
+	src: url('../fonts/light.ttf');
+}
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #fafafa;
+}
+.barra{
+	position: fixed;
+	top: 0;
+	background-color: #003C4B;
+	width: 100%;
+	height: 10%;
+    z-index: 10;
+}
+.limite{
+	position: absolute;
+	width: 100%;
+	height: 89%;
+	top: 11%;
+}
+.quad{
+	position: relative;
+	background-color: #fafafa;
+	width: 48.5%;
+	height: 48%;
+	float: left;
+	margin-left: 0.5%;
+	margin-top: 0.5%;
+    z-index: 0;
+    border: 1px solid #b5b5b5;
+}
+.imgProduto{
+    position: relative;
+    width: 86%;
+    height: 75%;
+    top: 3%;
+    left: 7%;
+	
+}
+.footerProduto{
+	position: absolute;
+	width: 86%;
+	height: 16%;
+	bottom: 1%;
+	left: 7%;
+
+	overflow: hidden;
+}
+
+.descProduto{
+	position: relative;
+	top:0;
+    color: #002933;
+	font-family: light;
+    font-size: 70%;
+}
+span{
+	font-size: 4vmin;
+}
+
+.precoProduto{
+	position: absolute;
+	bottom: 0;
+	right: 2%;
+	font-family: ultra;
+    font-size: 5vmin;
+    color: #016F8A;
+}
+.fotoProduto{
+    position: relative;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}

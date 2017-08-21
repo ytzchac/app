@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <script src="js/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/produto.css">
+        <script src="js/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAy3haKgrbhhZUJijtYWpXnLDfDT3jeuRI",
+        authDomain: "neodb-aeae2.firebaseapp.com",
+        databaseURL: "https://neodb-aeae2.firebaseio.com",
+        storageBucket: "neodb-aeae2.appspot.com",
+        messagingSenderId: "387458253901"
+      };
+      firebase.initializeApp(config);
+    </script>
+   
+	<script>
+		
+		
+        var produto = {};
+		var pedido = {};
+
+		function add(){
+			sessionStorage.setItem(nome, src);
+			var ref = firebase.database().ref("john/carrinho");
+			// quantidade de produto no input text
+			var quantidade = parseInt(document.getElementById("qtdetxt").value);
+
+			ref.once('value').then(function(snapshot){
+				var checa = snapshot.child(token).exists();
+				
+				// se nao existir pedido do usuario, faz pedido
+				
+				if(checa == false){
+									
+					produto[nome] = quantidade;
+
+					pedido[token] = {nome: usuario, sobrenome: sobrenome, telefone: telefone, produto : produto, valor: preco}
+					var ref1 = firebase.database().ref("john/carrinho");
+					ref1.update(pedido);
+				}else{
+					var verificaSeTemProduto = snapshot.child(token).child("produto").child(nome).exists();
+					if(verificaSeTemProduto == true){
+						var objAtualiza = {};
+						//se tem produto igual, incrementa
+						var produtoAdicionado = snapshot.child(token).child("produto").child(nome).val();
+						var produtoAtualizado = produtoAdicionado + quantidade;
+						
+						var atualiza = firebase.database().ref("john/carrinho").child(token).child("produto");
+						
+						objAtualiza[nome] = produtoAtualizado;
+
+						atualiza.update(objAtualiza);
+					}else{
+						// se o cliente já pediu algum produto, mas os produtos são diferetentes, faz:
+						produto[nome] = quantidade;
+						var ref = firebase.database().ref("john/carrinho").child(token).child("produto");
+						ref.update(produto);
+					}
+				}
+			});
+
+			
+		}
+
+		function finaliza(){
+			location.href="carrinho.html"
+		}
+
+		var criar = new Object();
+		criar.produto = function(){
+			var nome = sessionStorage.getItem('nome');
+			var preco = sessionStorage.getItem('preco');
+			var id = sessionStorage.getItem('id');
+			var src = sessionStorage.getItem('src');
+		
+			
+			if(nome != null){
+				document.getElementById("txtDescricao").textContent = nome;
+				document.getElementById("imgSize").src = src;
+				document.getElementById("txtPreco").textContent = preco;
+
+				document.getElementById("corpo").style.display = "initial";
+			}
+		}
+
+
+		$(document).ready(function(){
+			criar.produto();
+		});
+
+		function voltar(){
+			location.href="index.html";
+		}
+	</script>
+
+	</head>
+    <body>
+
+	    <div class="barra">
+	    	<a onclick="voltar()" ><img src="img/back.png" alt="" class="voltar"></a>
+	    </div>	
+	    <div id="corpo" style="display:none;">
+	    	<div class="descricao" align="center">
+	    		<span id="txtDescricao" class="txtDescricao"></span>
+	    	
+	    		<div class="verMais" align="center">
+	    			<span class="txtVermais">VER MAIS</span>
+	    		</div>
+	    	</div>
+	    	
+	    	<div class="imgProduto">
+	    		<img id="imgSize" class="imgSize" src="#">
+	    	</div>
+	    	<div class="preco">
+				<span id="txtPreco" class="txtPreco"></span>
+	    	</div>
+	    	<div class="quantidade">
+	    		<input type="text" id="qtdetxt" size="2" maxlength="2"  value="0">
+	    		<span class="txtQuantidade" id="txtQuantidade">QUANTIDADE</span>
+	    	</div>
+	    	
+	    	<div class="addCarrinho">
+	    		<input type="submit" value="Adicionar ao Carrinho" onclick="add()" class="btnAdd">
+	    	</div>
+	    	<div class="comprarAgora">
+	    		<input type="submit" onclick="finaliza()" value="Enviar Pedido" class="btnComprarAgora">
+	    	</div>
+		</div>
+	    					   
+    
+    </body>
+</html>

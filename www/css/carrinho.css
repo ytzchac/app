@@ -1,0 +1,124 @@
+/*
+* @Author: ytzchac
+* @Date:   2017-03-07 08:49:18
+* @Last Modified by:   ytzchac
+* @Last Modified time: 2017-03-07 10:06:58
+*/
+
+@font-face{
+	font-family: ultra;
+	src: url('../fonts/ultra.ttf');
+}
+@font-face{
+	font-family: light;
+	src: url('../fonts/light.ttf');
+}
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #fafafa;
+}
+.barra{
+	position: fixed;
+	top: 0;
+	background-color: #003C4B;
+	width: 100%;
+	height: 9%;
+    z-index: 10;
+}
+.produtos{
+	position: absolute;
+	top: 9%;
+	width: 100%;
+	height: 91%;
+	background-color: #fafafa;
+}
+.faixaProduto{
+	position: relative;
+	top: 15%;
+	left: 5%;
+	background-color: #efefef;
+	width: 90%;
+	height: 10%;
+	margin-top: 1%;
+	border: 1px solid #b5b5b5;
+}
+.miniProduto{
+	position: absolute;
+	width: 20%;
+	height: 90%;
+	
+	top: 5%;
+	left: 3%;
+	display: table;
+
+}
+.alinhar{
+	display: table-cell;
+    vertical-align: middle;
+}
+.fotoProduto{
+	
+	display: table-cell;
+    vertical-align: middle;
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+}
+.descProd{
+	position: absolute;
+	width: 60%;
+	height: 30%;
+	left: 5%;
+	top: 35%;
+	display: table;
+	text-align: center;
+}
+span{
+	font-family: light; 
+	color: #4a4d63;
+}
+
+.txtProduto{
+	font-size: 4vmin;
+}
+.qntProduto{
+	position: absolute;
+	width: 13%;
+	height: 70%;	
+	bottom: 17%;
+	right: 1%;
+}
+input[type="text"]{
+	position: absolute;
+	top: 20%;
+	right: 13%;
+	width: 74%;
+	height: 60%;
+	font-size: 4vmin;
+	text-align: center;
+}
+.btnConfirma{
+	position: fixed;
+	z-index: 10;
+	bottom: 2%;
+	right: 27%;
+	width: 46%;
+	height: 6%;
+	font-size: 4.2vmin;
+	background-color: #003C4B;
+	color: #fafafa;
+	font-family: light;
+	border: 0;
+}
+
+.voltar{
+	position: absolute;
+	max-height: 50%;
+	max-width: 50%;
+	width: auto;
+	height: auto;
+	top: 25%;
+	left: 2%;
+}

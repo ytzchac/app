@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/carrinho.css">
+	    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+	    <script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyBiBD3o3vYz_mEGP--MIYEwV3GGcPU_pl8",
+		    authDomain: "empsoft-344b5.firebaseapp.com",
+		    databaseURL: "https://empsoft-344b5.firebaseio.com",
+		    projectId: "empsoft-344b5",
+		    storageBucket: "empsoft-344b5.appspot.com",
+		    messagingSenderId: "135153446688"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+	</head>
+	<script>
+		
+
+        var cria = new Object();
+        cria.produto = function(){
+        	
+        	var ref = firebase.database().ref("carrinho");
+
+        	ref.orderByKey().limitToLast(10).on('child_added', function(snapshot){
+	        	
+        		var nomeProduto = snapshot.key;
+        		var quantidadeProduto = snapshot.val();
+
+        		var $faixaProduto = $('<div/>',{
+	        		'class' : 'faixaProduto'
+	        		});
+
+	        	var $miniProduto = $('<div/>',{
+	        		'class' : 'miniProduto'
+	        	});
+
+	        	var $alinhar = $('<div/>',{
+	        		'class' : 'alinhar'
+	        	});
+     	
+	        	var $descProd = $('<div/>',{
+	        		'class' : 'descProd'
+	        	});	
+
+	        	var $alinhar2 = $('<div/>',{
+	        		'class' : 'alinhar'
+	        	});
+
+	        	var $txtProduto = $('<span/>',{
+	        		'class' : 'txtProduto',
+	        		'text' : nomeProduto
+	        	});
+
+	        	var $qntProduto = $('<div/>',{
+	        		'class' : 'qntProduto'
+	        	});
+
+	        	var $qnt = $('<input/>',{
+	        		'type' : 'text',
+	        		'class' : 'qnt',
+	        		'value' : quantidadeProduto,
+	        		'maxlength' : '3'
+	        	});
+
+	        	$qntProduto.append($qnt);
+
+	        	$alinhar.append($txtProduto);
+	        	$descProd.append($alinhar);
+
+	        	$miniProduto.append($alinhar2);
+
+	        	$faixaProduto.append($miniProduto);
+	        	$faixaProduto.append($descProd);
+	        	$faixaProduto.append($qntProduto);
+
+	        	$faixaProduto.appendTo(".produtos");
+
+
+        	});
+        	
+
+        }
+
+        $(document).ready(function(){
+        	cria.produto();
+        })
+
+        function voltar(){
+			location.href="detalheProduto.html";
+		}
+
+
+		var pedido = {};
+		var dados = {
+			foto: "https://pbs.twimg.com/profile_images/419105025302884352/KPLmYHnx_400x400.jpeg",
+			nome: "Isaac"
+		};
+
+		function conclui() {
+			var refCarrinho = firebase.database().ref('carrinho');
+			var refPed = firebase.database().ref('pedidos');
+			refCarrinho.once('value').then(function(snapshot){
+				var back = snapshot.exportVal();
+
+				refPed.once('value').then(function(childSnapshot){
+					var indice = childSnapshot.numChildren();
+					pedido["produtos"] = back;
+					pedido["status"] = "Pendente";
+					
+					pedido["usuario"] = dados;
+					
+					refPed.child(indice).update(pedido, function(){
+						alert('Pedido enviado!');
+						refCarrinho.remove();
+						location.href = "index.html";
+					});
+				})
+			});
+		}
+	</script>
+    <body>
+    	<div class="barra">
+    			<a onclick="voltar()" ><img src="img/back.png" alt="" class="voltar"></a>
+    	</div>
+    	<div class="produtos">
+	    	
+	    	
+    	<input type="submit" onclick="conclui()" class="btnConfirma" value="Concluir Pedido">
+	
+    </body>
+</html>

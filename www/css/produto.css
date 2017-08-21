@@ -1,0 +1,182 @@
+/*
+* @Author: ytzchac
+* @Date:   2017-03-05 19:22:12
+* @Last Modified by:   ytzchac
+* @Last Modified time: 2017-03-05 22:19:58
+*/
+@font-face{
+	font-family: ultra;
+	src: url('../fonts/ultra.ttf');
+}
+@font-face{
+	font-family: light;
+	src: url('../fonts/light.ttf');
+}
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #fafafa;
+	
+}
+
+
+.barra{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 9%;
+	background-color: #003C4B;
+	z-index: 10;
+}
+
+.descricao{
+	position: absolute;
+	top: 9.5%;
+	left: 2%;
+	width: 96%;
+	height: 16%;
+	
+}
+
+.verMais{
+	position: absolute;
+	bottom: 2%;
+	right: 0.5%;
+	width: 25%;
+	height: 25%;
+	background-color: #efefef;
+	border: 1px solid #b5b5b5;
+}
+
+.txtDescricao{
+	position: relative;
+	top: 20%;
+	font-size: 6vmin;
+}
+
+.txtVermais{
+	position: relative;
+	font-size: 4vmin;
+	top: 10%;
+}
+span{color: #4a4d63; font-family: light;}
+
+.imgProduto{
+	position: absolute;
+	top: 25%;
+	right: 19%;
+	width: 62%;
+	height: 50%;
+	overflow: hidden;
+	
+}
+.imgSize{
+	position: relative;
+   	max-width: auto;
+    width: 100%;
+    background-color: red;
+}
+.preco{
+	position: absolute;
+	width: 61.75%;
+	height: 6%;
+	right: 19%;
+	bottom: 26%;
+	background-color: #efefef;
+	border: 1px solid #b5b5b5;
+}
+
+.txtPreco{
+	position: relative;
+	top: 30%;
+	right: 5%;
+	font-size: 5vmin;
+	font-family: ultra;
+	float: right;
+}
+.quantidade{
+	position: absolute;
+	width: 61.75%;
+	height: 6%;
+	right: 19%;
+	bottom: 18.5%;
+	background-color: #efefef;
+	border: 1px solid #b5b5b5;
+}
+input[type=text]{
+	width: 13%;
+	height: 70%;
+	text-align: center;
+	border: 0;
+}
+
+#qtdetxt{
+	position: absolute;
+	top: 9.5%;
+	left: 3%;
+	font-size: 3vmin;
+	font-family: light;
+}
+.txtQuantidade{
+	position: relative;
+	left: 30%;
+	top: 30%;
+	font-family: light;
+	font-size: 4vmin;
+}
+.addCarrinho{
+	position: absolute;
+	width: 61.75%;
+	height: 6%;
+	right: 19%;
+	bottom: 11%;
+
+	border: 1px solid white;
+}
+.comprarAgora{
+	position: absolute;
+	width: 61.75%;
+	height: 6%;
+	right: 19%;
+	bottom: 4%;	
+	border: 1px solid white;
+}
+
+.btnAdd{
+	width: 100%;
+	height: 100%;
+	font-size: 4vmin;
+	background-color: #003C4B;
+	font-family: light;
+	color: #fafafa;
+	border: 0;
+}
+
+.btnComprarAgora{
+	width: 100%;
+	height: 100%;
+	font-size: 4vmin;
+	background-color: #003C4B;
+	font-family: light;
+	color: #fafafa;
+	border: 0;
+}
+input{
+	text-align: center;
+	font-size: 4vmin;
+}
+.inpquantidade{
+	position: absolute;
+	height: 80%;
+	width: 15%;
+}
+
+.voltar{
+	position: absolute;
+	max-height: 50%;
+	max-width: 50%;
+	width: auto;
+	height: auto;
+	top: 25%;
+	left: 2%;
+}
